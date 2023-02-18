@@ -6,6 +6,8 @@ public class Corpo : MonoBehaviour
 {
     private Rigidbody Rb;
     private Animator Anim;
+    public float sensibilidade;
+    private float velocidadeP;
     
     void Start()
     {
@@ -21,10 +23,23 @@ public class Corpo : MonoBehaviour
 
     void Mover()
     {
+        //Correr
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            velocidadeP = 12;
+        }
+        else
+        {
+            velocidadeP = 5;
+        }
 
-        float velZ = Input.GetAxis("Vertical");
-        float velX = Input.GetAxis("Horizontal");
-        Rb.velocity = new Vector3(velX, Rb.velocity.y, velZ);
+        //Movimento Andar
+        float velZ = Input.GetAxis("Vertical") * velocidadeP;
+        float velX = Input.GetAxis("Horizontal") * velocidadeP;
+        //PosCorrigida
+        Vector3 velCorrigida = velX * transform.right + velZ * transform.forward;
+
+        Rb.velocity = new Vector3(velCorrigida.x, Rb.velocity.y, velCorrigida.z);
 
         if(velX != 0 || velZ !=0)
         {
@@ -34,5 +49,11 @@ public class Corpo : MonoBehaviour
         {
             Anim.SetBool("Andar", false);
         }
+
+        //Movimento Girar
+        float mouseX = Input.GetAxis("Mouse X") * sensibilidade * Time.deltaTime;
+        transform.Rotate(Vector3.up * mouseX);
+
+
     }
 }

@@ -6,13 +6,13 @@ public class Atirararma : MonoBehaviour
 {
     public GameObject PontoDeSaida;
     public GameObject Bala;
-    
-    
+
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
+            GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
+            Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
         }
     }
 }

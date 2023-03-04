@@ -13,6 +13,7 @@ public class Atirararma : MonoBehaviour
         {
             GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
             Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+            Destroy(Disparo, 2f);
         }
     }
 }

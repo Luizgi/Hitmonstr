@@ -5,10 +5,16 @@ using UnityEngine;
 public class Inimigo : MonoBehaviour
 {
     private Animator Anim;
-    // Start is called before the first frame update
+    private GameObject Jogador;
     void Start()
     {
         Anim = GetComponent<Animator>();
+        Jogador = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        transform.LookAt(Jogador.transform.position);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -18,7 +24,6 @@ public class Inimigo : MonoBehaviour
             Destroy(collision.gameObject);
             Anim.SetTrigger("Morte");
             Destroy(this.gameObject, 2f);
-            
         }
     }
 

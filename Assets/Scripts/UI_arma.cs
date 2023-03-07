@@ -8,15 +8,13 @@ public class UI_arma : MonoBehaviour
 
     public TMP_Text meuTexto;
     private Atirararma minhaArma;
-    // Start is called before the first frame update
     void Start()
     {
         minhaArma = GameObject.FindGameObjectWithTag("Arma").GetComponent<Atirararma>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        meuTexto.text = "Arma: " + minhaArma.municao.ToString() + " / " + minhaArma.limiteMunicao.ToString();
     }
 }

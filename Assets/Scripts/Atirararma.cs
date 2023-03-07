@@ -6,14 +6,29 @@ public class Atirararma : MonoBehaviour
 {
     public GameObject PontoDeSaida;
     public GameObject Bala;
+    public int limiteMunicao = 30;
+    public int municao = 30;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
-            Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
-            Destroy(Disparo, 2f);
+            if (municao > 0)
+            {
+                municao--;
+                GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
+                Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+                Destroy(Disparo, 2f);
+            }
+        }
+    }
+
+    public void Carregar()
+    {
+        municao = municao + 10;
+        if(municao > 30)
+        {
+            municao = 30;
         }
     }
 }

@@ -5,9 +5,17 @@ using UnityEngine;
 public class Atirararma : MonoBehaviour
 {
     public GameObject PontoDeSaida;
+
     public GameObject Bala;
     public int limiteMunicao = 30;
     public int municao = 30;
+
+    private void Start()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        UnityEngine.Cursor.visible = false;
+    }
+
 
     void Update()
     {
@@ -16,6 +24,7 @@ public class Atirararma : MonoBehaviour
             if (municao > 0)
             {
                 municao--;
+                
                 GameObject Disparo = Instantiate(Bala, PontoDeSaida.transform.position, Quaternion.identity);
                 Disparo.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
                 Destroy(Disparo, 2f);

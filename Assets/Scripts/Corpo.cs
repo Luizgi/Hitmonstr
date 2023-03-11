@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Corpo : MonoBehaviour
 {
@@ -8,9 +10,15 @@ public class Corpo : MonoBehaviour
     private Animator Anim;
     public float sensibilidade;
     private float velocidadeP;
-    
+    public Image sangue;
+
+    public int hp = 100;
+
+
     void Start()
     {
+
+        
         Rb = GetComponent<Rigidbody>();
         Anim = GetComponent<Animator>();
     }
@@ -56,4 +64,18 @@ public class Corpo : MonoBehaviour
 
 
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ataque_Inimigo")
+        {
+            hp = hp - 10;
+            float alphaSangue = (float)hp / 100;
+            alphaSangue = 1 - alphaSangue;
+            
+            sangue.color = new Vector4(1, 1, 1, alphaSangue);
+        }
+    }
+
 }

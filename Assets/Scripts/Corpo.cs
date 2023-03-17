@@ -14,6 +14,8 @@ public class Corpo : MonoBehaviour
 
     public int hp = 100;
 
+    public GameObject TelaMorte;
+
 
     void Start()
     {
@@ -75,6 +77,10 @@ public class Corpo : MonoBehaviour
             alphaSangue = 1 - alphaSangue;
             
             sangue.color = new Vector4(1, 1, 1, alphaSangue);
+            if(hp <= 0)
+            {
+                TelaMorte.SetActive(true);
+            }
         }
     }
 

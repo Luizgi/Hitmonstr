@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Inimigo : MonoBehaviour
 {
     private Animator Anim;
     private GameObject Jogador;
     public GameObject MeuAtaque;
+
+
     void Start()
     {
         Anim = GetComponent<Animator>();
